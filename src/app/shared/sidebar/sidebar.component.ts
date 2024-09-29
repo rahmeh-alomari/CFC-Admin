@@ -38,9 +38,11 @@ export class SidebarComponent implements OnInit {
     private shared:SharedService
   ) {
     const user_data=btoa(btoa("user_info"));
-  
+
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
+      console.log("data",this.user_data)
+
     }
   }
 
@@ -64,6 +66,7 @@ export class SidebarComponent implements OnInit {
 
 
   checkRoute(data){
+ 
     const role=this.user_data.access_control.split(",");
     let index=role.findIndex(item=>{return item == data.toString()})
  

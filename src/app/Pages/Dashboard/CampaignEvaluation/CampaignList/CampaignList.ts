@@ -13,10 +13,15 @@ declare const $:any;
 export class CampaignList implements OnInit {
   campaignList:any=[];
   delete_data:any={};
+  program: any;
+ 
+
   load:boolean=false;
+  selectedProgram: any; // Variable to hold a selected program
   dataTable:any;
   LANG=environment.english_translations;
   user_data:any={};
+  error: string | null = null; // Error message state
 
   constructor(private router:Router,private kycService:KYCService,private toast:ToastrManager) {
     const user_data=btoa(btoa("user_info"));
@@ -25,8 +30,10 @@ export class CampaignList implements OnInit {
     }
   }
 
+
   ngOnInit() {
     this.getCampaignList();
+
   }
 
   getCampaignList(type?:number){
@@ -49,6 +56,23 @@ export class CampaignList implements OnInit {
         }, 100);
       }
     })
+  }
+
+  fetchProgramById(data): void {
+    console.log("data",data)
+  
+    this.kycService.getProgramById(data.id).subscribe({
+      next: (response) => {
+        console.log('Program data:', response);
+        this.program = response;  // Assign the response to a component property
+        this.kycService.setProgram(this.program);
+        this.router.navigate(['/dashboard/program-details']);
+      },
+      error: (error) => {
+        console.error('Error fetching program:', error);
+        // Handle the error appropriately
+      }
+    });
   }
 
   edit(data){

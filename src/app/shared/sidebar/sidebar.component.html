@@ -1,4 +1,6 @@
-<nav class="sidebar-nav">
+
+
+<nav class="sidebar-nav" >
     <ul id="sidebarnav">
 		<li class="nav-devider"></li>
         <!-- First level menu -->
@@ -18,7 +20,7 @@
             </a>
         </li> -->
 
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.PRODUCTS)">
+        <li class="sidebar-item" >
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="d-flex align-center justify-content-between w-100">
                     <span class="hide-menu">{{LANG.Products}}</span>
@@ -47,7 +49,7 @@
             </ul>
         </li>
 
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.KYC)">
+        <li class="sidebar-item">
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="d-flex align-center justify-content-between w-100">
                     <span class="hide-menu">{{LANG.KYC}}</span>
@@ -78,7 +80,7 @@
             </ul>
         </li>
 
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.USER_MANAGEMENT)">
+        <li class="sidebar-item" ء>
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample4">
                 <div class="d-flex align-center justify-content-between w-100">
                     <span class="hide-menu">{{LANG.Users_Management}}</span>
@@ -111,7 +113,7 @@
             </ul>
         </li>
 
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.LOGS)">
+        <li class="sidebar-item" >
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExampleLOGS" role="button" aria-expanded="false" aria-controls="collapseExample44">
                 <div class="d-flex align-center justify-content-between w-100">
                     <span class="hide-menu">Reporting system</span>
@@ -150,7 +152,7 @@
             </ul>
         </li>
        
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.CMS)">
+        <li class="sidebar-item" >
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExample44" role="button" aria-expanded="false" aria-controls="collapseExample44">
                 <div class="d-flex align-center justify-content-between w-100">
                     <span class="hide-menu">CMS</span>
@@ -228,7 +230,7 @@
 
             </ul>
         </li>
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.TRANS_SETUP)">
+        <li class="sidebar-item" >
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExample4444" role="button" aria-expanded="false" aria-controls="collapseExample4444">
                 <div class="d-flex align-center justify-content-between w-100">
                     <span class="hide-menu">Trans-Setup</span>
@@ -265,7 +267,7 @@
 
             </ul>
         </li>
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.TRANSFER)">
+        <li class="sidebar-item" >
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExampleTRANSFER" role="button" aria-expanded="false" aria-controls="collapseExample44">
                 <div class="d-flex align-center justify-content-between w-100">
                     <span class="hide-menu">Transfer</span>
@@ -317,24 +319,24 @@
             </ul>
         </li> -->
 
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.OPPORTUNITY)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/campaign-list">
+        <li class="sidebar-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/campaign-list">
             <a class="sidebar-link waves-effect waves-dark">
                 <span class="hide-menu">{{LANG.Opportunity_List}}</span>
             </a>
         </li>
 
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.INVESTORS)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/inverstors-kyc">
+        <li class="sidebar-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/inverstors-kyc">
             <a class="sidebar-link waves-effect waves-dark">
                 <span class="hide-menu">{{LANG.Investors}}</span>
             </a>
         </li>
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.BORROWERS)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/borrowers-kyc">
+        <li class="sidebar-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/borrowers-kyc">
             <a class="sidebar-link waves-effect waves-dark">
                 <span class="hide-menu">{{LANG.Borrowers}}</span>
             </a>
         </li>
 
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.EVALUATION)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/evaluation-list">
+        <li class="sidebar-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/evaluation-list">
             <a class="sidebar-link waves-effect waves-dark">
                 <span class="hide-menu">{{LANG.Evaluation_List}}</span>
             </a>
@@ -342,7 +344,7 @@
 
 
 
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.NOTIFICATIONS)">
+        <li class="sidebar-item" >
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExample6" role="button" aria-expanded="false" aria-controls="collapseExample4">
                 <div class="d-flex align-center justify-content-between w-100">
                     <span class="hide-menu">{{LANG.Notifications}}</span>
@@ -366,18 +368,18 @@
             </ul>
         </li>
 
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.PAGES)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/pages">
+        <li class="sidebar-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/pages">
             <a class="sidebar-link waves-effect waves-dark">
                 <span class="hide-menu">{{LANG.Pages}}</span>
             </a>
         </li>
-        <li class="sidebar-item" *ngIf="checkRoute(navigation_options.PAGES)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/page-parameters">
+        <li class="sidebar-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/page-parameters">
             <a class="sidebar-link waves-effect waves-dark">
                 <span class="hide-menu">Pages Parameters</span>
             </a>
         </li>
 
-        <li *ngIf="checkRoute(navigation_options.OPPORTUNITY_SETUP)"class="sidebar-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/opportunity-setup">
+        <li class="sidebar-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/opportunity-setup">
             <a class="sidebar-link waves-effect waves-dark">
                 <span class="hide-menu">{{LANG.Opportunity_setup}}</span>
             </a>

@@ -1,12 +1,24 @@
 import { Injectable } from "@angular/core";
 
 import { apiServiceComponent } from "../Services/api.service";
+import { Observable } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class KYCService {
   private url: string = "";
-
+  private Compinlist: any[] = []; 
   constructor(private api: apiServiceComponent) {}
+
+  setProgram(program: any) {
+    this.Compinlist = program;
+    console.log("program",program)
+  }
+
+  getProgram() {
+    console.log("program",this.Compinlist)
+
+    return this.Compinlist;
+  }
 
   getKYCList() {
     this.url = "kyc_list";
@@ -29,6 +41,12 @@ export class KYCService {
     let query = "";
     return this.api.get(this.url, query);
   }
+
+    addProgram(programData: any): Observable<any> {
+      this.url = "program-insert";
+
+      return this.api.post(this.url, programData);
+    }
   addInfoType(data: Object) {
     this.url = "add_infotype";
     return this.api.post(this.url, data);
@@ -58,6 +76,13 @@ export class KYCService {
     this.url = `get_infotype_id/${id}`;
     let query = "";
     return this.api.post(this.url, query);
+  }
+
+  getProgramById(id): Observable<any> {
+    this.url =`program-index?id=${id}`;
+    let query = ""; 
+    console.log("this.url",this.url)
+    return this.api.get( this.url ,query);
   }
   getUserType(id: any) {
     this.url = `userTypeById?id=`;

@@ -227,6 +227,8 @@ const ChildRoutes: Routes = [
   ],
   declarations:[
       DashboardComponent,
+     
+      // ProgramsDetailsComponent,
   ]
 })
 export class DashboardModule { }

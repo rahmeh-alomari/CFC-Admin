@@ -36,6 +36,7 @@
                                     <th>{{LANG.Status}}</th>
                                     <th>Campaign Detail</th>
                                     <th>Investors</th>
+                                    <th>Prgram Details</th>
                                     <th>{{LANG.Action}}</th>
 
                                 </tr>
@@ -51,6 +52,15 @@
                                     <td>{{data.status == '1' ? LANG.Publish : LANG.Pending}}</td>
                                     <td><a (click)="detailsCampaign(data)"><i class="fas fa-plus-circle"></i></a></td>
                                     <td><button style="border-style: none;background-color: #7460ee;color: white;padding: 5px 10px;border-radius: 2px;cursor: pointer;" (click)="viewInvestors(data)">View Investors</button></td>
+                                    <td>
+                                        <button 
+                                                            style="border-style: none; background-color: #7460ee; color: white; padding: 5px 10px; border-radius: 2px; cursor: pointer;"
+                                          (click)="fetchProgramById(data)"
+                                        
+                                        >
+                                          View program
+                                        </button>
+                                      </td>
                                     <td>
                                         <span class="del mr-3" (click)="showDeleteModal(data)"><i class="fa fa-trash"></i></span>
                                         <a (click)="edit(data)"><i class="fas fa-edit"></i></a>
