@@ -25,11 +25,13 @@ h2 {
     border: 1px solid #dee2e6;
 }
 
-.table th {
+.table th ,.pagination-controls button {
     background-color: rgb(60, 13, 124);
     color: #ffffff;
 }
-
+.breadcrumb-item:hover{
+color: #007bff;
+}
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #f2f2f2;
 }
@@ -37,7 +39,9 @@ h2 {
 .table-hover tbody tr:hover {
     background-color: #e9ecef;
 }
-
+.text-danger{
+    color: red !important;
+}
 .table-dark {
     background-color: #343a40;
 }
@@ -101,4 +105,18 @@ h2 {
     .action-icons i {
         font-size: 16px;
     }
+}
+.list-group-item {
+    cursor: pointer;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f8f9fa; /* Light grey background on hover */
+  }
+
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: rgb(60, 13, 124);
+    border-color:rgb(60, 13, 124)
 }

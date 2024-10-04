@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrManager } from 'ng6-toastr-notifications';
 import { KYCService } from 'src/app/shared/Services/kyc.service';
 import { environment } from 'src/environments/environment';
+import { Location } from '@angular/common';  // Import Location service
 
 @Component({
   selector: 'app-add-programs',
@@ -12,9 +14,13 @@ export class AddProgramsComponent implements OnInit {
   programForm: FormGroup;
   LANG=environment.english_translations;
 
-  constructor(private fb: FormBuilder,private kycService:KYCService,) {
+  constructor(private fb: FormBuilder,private kycService:KYCService,private toast:ToastrManager,private location: Location) {
       this.programForm = this.fb.group({
         campaign_id: ['', Validators.required],
+
+        psd_director_name: ['', Validators.required],
+        psd_director_relation: ['', Validators.required],
+        psd_director_nationality: ['', Validators.required],
         Licensing: ['', Validators.required],
         Licensing_Purpose:['', Validators.required],
         SPV_trustee: ['', Validators.required],
@@ -79,9 +85,13 @@ export class AddProgramsComponent implements OnInit {
         this.kycService.addProgram(this.programForm.value).subscribe(
             (response) => {
                 console.log('Program added successfully:', response);
+                this.toast.successToastr(this.LANG.Evaluation_deleted_successfully);
+
                 this.programForm.reset(); // Reset the form after submission
             },
             (error) => {
+                this.toast.warningToastr(error.message);
+
                 console.error('Error adding program:', error);
             }
         );
@@ -89,5 +99,7 @@ export class AddProgramsComponent implements OnInit {
         console.log('Form is invalid');
     }
 }
-
+goBack(): void {
+    this.location.back();  // Navigate back to the previous page
+  }
 }

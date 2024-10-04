@@ -6,9 +6,9 @@ import { LoaderModule } from 'src/app/shared/loader/Loader.module';
 import { CampaignList } from './CampaignList';
 import { ProgramsDetailsComponent } from '../programs-details/programs-details.component';
 import { AddProgramsComponent } from '../programs-details/add-programs/add-programs.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ReactiveFormsModule } from '@angular/forms';  // Import ReactiveFormsModule
-
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 
  
@@ -17,22 +17,26 @@ const ChildRoutes: Routes = [
         path: 'campaign-list',
         component:CampaignList
       },
-      { path: 'program-details', component: ProgramsDetailsComponent },
+      { path: 'program-details/:id', component: ProgramsDetailsComponent },
       { path: 'add-programs', component: AddProgramsComponent },
+      
   ] 
 
 @NgModule({
+  declarations:[
+    CampaignList,
+    ProgramsDetailsComponent,
+    AddProgramsComponent,
+  
+  ],
   imports: [
     RouterModule.forChild(ChildRoutes),
     FormsModule,
+    NgbPaginationModule,
     ReactiveFormsModule ,
     CommonModule,
     LoaderModule
   ],
-  declarations:[
-    CampaignList,
-    ProgramsDetailsComponent,
-    AddProgramsComponent
-  ]
+ 
 })
 export class CampaignListModule { }

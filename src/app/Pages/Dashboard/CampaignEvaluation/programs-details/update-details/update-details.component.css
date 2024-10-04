@@ -1,0 +1,45 @@
+.modal-header {
+    background-color:  rgba(0, 123, 255, 0.25); /* Bootstrap primary color */
+    color: white; /* Text color for header */
+    padding: 15px 20px; /* Padding for the header */
+    border-bottom: 1px solid #e9ecef; /* Light bottom border */
+}
+
+.modal-title {
+    margin: 0; /* Remove default margin */
+    font-size: 1.5rem; /* Title font size */
+}
+
+.close {
+    color: white; /* Close button color */
+    font-size: 1.5rem; /* Close button font size */
+    opacity: 0.8; /* Slight transparency */
+}
+
+.close:hover {
+    opacity: 1; /* Full opacity on hover */
+}
+
+.modal-body {
+    padding: 20px; /* Padding for body */
+    background-color: #f8f9fa; /* Light background for body */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form fields */
+}
+
+.form-control {
+    border-radius: 0.25rem; /* Rounded corners */
+    border: 1px solid #ced4da; /* Border color */
+}
+
+.form-control:focus {
+    border-color: rgba(0, 123, 255, 0.25); /* Change border color on focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Box shadow on focus */
+}
+
+.btn {
+    width: 100%; /* Full-width button */
+    border-radius: 0.25rem; /* Rounded button */
+}

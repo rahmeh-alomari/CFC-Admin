@@ -64,9 +64,10 @@ export class CampaignList implements OnInit {
     this.kycService.getProgramById(data.id).subscribe({
       next: (response) => {
         console.log('Program data:', response);
-        this.program = response;  // Assign the response to a component property
+        this.program = response;  
         this.kycService.setProgram(this.program);
-        this.router.navigate(['/dashboard/program-details']);
+   
+        this.router.navigate(['/dashboard/program-details', data.id]);
       },
       error: (error) => {
         console.error('Error fetching program:', error);

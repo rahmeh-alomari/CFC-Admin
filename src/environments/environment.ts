@@ -55,6 +55,8 @@ export const environment = {
     Close:"Close",
     Save_changes:"Save changes",
     Campaign_List:"Campaign List",
+    Program_List:"Program List",
+    ADD_Program:"Add Program",
     Home:"Home",
     Tagline:"Tagline",
     Minimum_Investment:"Minimum Investment",

@@ -60,7 +60,9 @@ textarea:focus {
     border-color: #7460ee; /* Change border color on focus */
     outline: none; /* Remove default outline */
 }
-
+.breadcrumb-item:hover{
+    color: #007bff;
+    }
 /* Submit button styles */
 button {
     background-color: rgb(60, 13, 124); /* Button background color */

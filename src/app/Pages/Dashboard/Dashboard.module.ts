@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './Dashboard';
 import { TransSetupComponent } from './trans-setup/trans-setup.component';
+import { ConfirmDeleteModalComponent } from './CampaignEvaluation/programs-details/confirm-delete-modal/confirm-delete-modal.component';
+import { UpdateDetailsComponent } from './CampaignEvaluation/programs-details/update-details/update-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -224,9 +228,14 @@ const ChildRoutes: Routes = [
   imports: [
     RouterModule.forChild(ChildRoutes),
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule, 
+    NgbModule  
   ],
   declarations:[
       DashboardComponent,
+      ConfirmDeleteModalComponent,
+      UpdateDetailsComponent,
      
       // ProgramsDetailsComponent,
   ]

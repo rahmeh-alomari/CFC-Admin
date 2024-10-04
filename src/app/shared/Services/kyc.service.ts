@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { apiServiceComponent } from "../Services/api.service";
 import { Observable } from "rxjs";
+import { HttpHeaders } from "@angular/common/http";
 
 @Injectable({ providedIn: "root" })
 export class KYCService {
@@ -14,12 +15,33 @@ export class KYCService {
     console.log("program",program)
   }
 
+  updateProgram(programData: any,id: number,): Observable<any> {
+   
+    this.url = `update-program/${id}`;
+    let query = "";
+    return this.api.post(this.url, programData);
+  }
+
+
+
+
+  
+  getPrograms(): Observable<any> {
+    this.url = "getAll";
+    let query = "";
+    return this.api.get( this.url,query);
+  }
   getProgram() {
     console.log("program",this.Compinlist)
 
     return this.Compinlist;
   }
 
+  deleteProgram(id: number): Observable<any> {
+    this.url = `delete-program?id=${id}`;
+    let query = "";
+    return this.api.post( this.url,query);
+  }
   getKYCList() {
     this.url = "kyc_list";
     let query = "";
@@ -79,6 +101,8 @@ export class KYCService {
   }
 
   getProgramById(id): Observable<any> {
+    console.log("this.url",id)
+
     this.url =`program-index?id=${id}`;
     let query = ""; 
     console.log("this.url",this.url)
