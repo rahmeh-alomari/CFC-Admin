@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { KYCService } from 'src/app/shared/Services/kyc.service';
 import { environment } from 'src/environments/environment';
-import {  Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
@@ -14,23 +14,33 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 export class UpdateDetailsComponent implements OnInit {
   @Input() programId!: number;  // ID passed from the parent component
   programForm: FormGroup;
-  LANG=environment.english_translations;
-  constructor(private fb: FormBuilder,private kycService:KYCService,public activeModal: NgbActiveModal,private toast:ToastrManager) {
-    this.programForm = this.fb.group({
-      campaign_id: ['', Validators.required],
+  @Input() id!: number;  // ID passed from the parent component
 
-      psd_director_name: ['', Validators.required],
-      psd_director_relation: ['', Validators.required],
-      psd_director_nationality: ['', Validators.required],
-      Licensing: ['', Validators.required],
-      Licensing_Purpose:['', Validators.required],
-      SPV_trustee: ['', Validators.required],
-      spv:['', Validators.required],
-      sukuk: ['', Validators.required],
-      Sukuk_products: ['', Validators.required],
-      Issuer_Paying_Agent:['', Validators.required],
-      sukk_face_value: ['', Validators.required],
-      Platform_Admin: ['', Validators.required],
+  LANG = environment.english_translations;
+  constructor(private fb: FormBuilder, private kycService: KYCService, public activeModal: NgbActiveModal, private toast: ToastrManager) {
+
+  }
+  ngOnInit(): void {
+    console.log("this.programIdeeeeeeeeeeeeeeeeee", this.programId)
+    console.log("this.programIdeeeeeeeeeeeeeeeeeeididididid", this.id)
+
+    if (this.programId) {
+      console.log("this.programId", this.programId)
+      this.programForm = this.fb.group({
+        campaign_id: [{ value: this.programId, disabled: true }, Validators.required],
+
+        psd_director_name: ['', Validators.required],
+        psd_director_relation: ['', Validators.required],
+        psd_director_nationality: ['', Validators.required],
+        Licensing: ['', Validators.required],
+        Licensing_Purpose: ['', Validators.required],
+        SPV_trustee: ['', Validators.required],
+        spv: ['', Validators.required],
+        sukuk: ['', Validators.required],
+        Sukuk_products: ['', Validators.required],
+        Issuer_Paying_Agent: ['', Validators.required],
+        sukk_face_value: ['', Validators.required],
+        Platform_Admin: ['', Validators.required],
         funding_purpose: ['', Validators.required],
         program_tot_face_value: ['', Validators.required],
         sponsor: ['', Validators.required],
@@ -74,43 +84,41 @@ export class UpdateDetailsComponent implements OnInit {
         Funding_amount: [null, [Validators.required, Validators.min(0)]],
         contract_start_date: ['', Validators.required],
         contract_end_date: ['', Validators.required]
-    });
-}
-ngOnInit(): void {
-  console.log("this.programId",this.programId)
-  if (this.programId) {
-    console.log("this.programId",this.programId)
-    this.loadProgramData(this.programId)
+      });
+      this.loadProgramData(this.id)
+    }
   }
-}
-
-loadProgramData(id: number) {
-  if (this.programForm.valid) {
-    this.kycService.updateProgram(id,this.programForm.value).subscribe(
-      response => {
-        console.log('Program updated successfully', response);
-        this.toast.successToastr(this.LANG.Evaluation_deleted_successfully);
-
-        // Handle success (e.g., show a success message)
+  private loadProgramData(id: number) {
+    this.programForm.get('campaign_id')?.enable();
+    
+    this.kycService.getProgramById(id).subscribe(
+      (data) => {
+        console.log('Program data:', data);
+        this.programForm.patchValue(data);
       },
-      error => {
-        this.toast.warningToastr(error.message);
-
-        console.error('Error updating program', error);
-        // Handle error (e.g., show an error message)
+      (error) => {
+        console.error('Error loading program data', error);
       }
     );
   }
-}
-
-  // Save changes and close the modal
-  saveChanges() {
-    this.loadProgramData(this.programId);
-
-    this.activeModal.close('Save click');
+  save(): void {
+    if (this.programForm.valid) {
+      this.kycService.updateProgram(this.id, this.programForm.value).subscribe(
+        (response) => {
+          console.log('Update response:', response);
+          this.activeModal.close({ message: 'Data update successfully' });
+          this.toast.successToastr(this.LANG.Program_UPDATED_successfully);
+        },
+        (error) => {
+          console.error('Error updating program:', error);
+          this.toast.warningToastr(error.message);
+        }
+      );
+    } else {
+      console.log('Form is not valid.'); 
+    }
   }
 
-  // Dismiss the modal without saving
   dismiss() {
     this.activeModal.dismiss('Cancel click');
   }

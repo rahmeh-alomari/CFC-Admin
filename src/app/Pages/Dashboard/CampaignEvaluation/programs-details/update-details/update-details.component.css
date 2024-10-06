@@ -1,10 +1,13 @@
 .modal-header {
-    background-color:  rgba(0, 123, 255, 0.25); /* Bootstrap primary color */
+    background-color:rgb(60, 13, 124);
     color: white; /* Text color for header */
     padding: 15px 20px; /* Padding for the header */
     border-bottom: 1px solid #e9ecef; /* Light bottom border */
 }
-
+button:focus {
+    outline: unset;
+    outline: unser;
+}
 .modal-title {
     margin: 0; /* Remove default margin */
     font-size: 1.5rem; /* Title font size */

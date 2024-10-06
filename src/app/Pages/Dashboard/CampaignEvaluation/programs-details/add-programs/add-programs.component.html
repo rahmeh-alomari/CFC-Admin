@@ -1,14 +1,20 @@
 
-<div class="col-12">
-    <div class="d-flex justify-content-end align-items-center">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">{{LANG.Home}}</a></li>
-            <li class="breadcrumb-item active"  (click)="goBack()"style="cursor: pointer">{{LANG.Program_List}}</li>
-            <li class="breadcrumb-item active">{{LANG.ADD_Program}}</li>
 
-        </ol>
-        <!-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15" (click)="addKYC()"><i
-            class="fa fa-plus-circle"></i> Create New</button> -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">{{LANG.ADD_Program}}</h3>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">{{LANG.Home}}</a></li>
+                <li class="breadcrumb-item active"  (click)="goBack()"style="cursor: pointer">{{LANG.Program_List}}</li>
+                <li class="breadcrumb-item active">{{LANG.ADD_Program}}</li>
+    
+            </ol>
+            <!-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15" (click)="addKYC()"><i
+                class="fa fa-plus-circle"></i> Create New</button> -->
+        </div>
     </div>
 </div>
 <div class="container1">
@@ -18,11 +24,12 @@
             <div class="col-6">
                 <div>
                     <label for="campaign_id">Campaign ID:</label>
-                    <input id="campaign_id" formControlName="campaign_id" type="text" />
+                    <input id="campaign_id" formControlName="campaign_id" type="text" disabled />
                     <div *ngIf="programForm.get('campaign_id').invalid && programForm.get('campaign_id').touched">
-                        <small class="text-danger">Campaign ID is required.</small>
+                      Campaign ID is required
                     </div>
-                </div>
+                  </div>
+                  
             </div>
             <div class="col-6">
                 <div>
@@ -40,41 +47,42 @@
 
 
 
-
-
-        <div class="row">
-            <div class="col-4">
-                <div>
-                    <label for="psd_director_name">director_name</label>
-                    <input id="psd_director_name" formControlName="psd_director_name" type="text" />
-                    <div *ngIf="programForm.get('psd_director_name').invalid && programForm.get('psd_director_name').touched">
-                        <small class="text-danger">psd_director_name is required.</small>
+        <div class=" mt-4 border-pr">
+            <h3 class=" mb-4">Information for Directors</h3>
+            <div class="border rounded p-3"> <!-- Parent div for grouping -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="psd_director_name">Director Name</label>
+                            <input id="psd_director_name" formControlName="psd_director_name" type="text" class="form-control" />
+                            <div *ngIf="programForm.get('psd_director_name').invalid && programForm.get('psd_director_name').touched">
+                                <small class="text-danger">Director name is required.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="psd_director_relation">Director Relation</label>
+                            <input id="psd_director_relation" formControlName="psd_director_relation" type="text" class="form-control" />
+                            <div *ngIf="programForm.get('psd_director_relation').invalid && programForm.get('psd_director_relation').touched">
+                                <small class="text-danger">Relation to director is required.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="psd_director_nationality">Director Nationality</label>
+                            <input id="psd_director_nationality" formControlName="psd_director_nationality" type="text" class="form-control" />
+                            <div *ngIf="programForm.get('psd_director_nationality').invalid && programForm.get('psd_director_nationality').touched">
+                                <small class="text-danger">Nationality is required.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-4">
-                <div>
-                    <label for="psd_director_relation">psd_director_relation</label>
-                    <input id="psd_director_relation" formControlName="psd_director_relation" type="text" />
-                    <div *ngIf="programForm.get('psd_director_relation').invalid && programForm.get('psd_director_relation').touched">
-                        <small class="text-danger">psd_director_relation is required.</small>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-4">
-                <div>
-                    <label for="psd_director_nationality">psd_director_nationality</label>
-                    <input id="psd_director_nationality" formControlName="psd_director_nationality" type="text" />
-                    <div *ngIf="programForm.get('psd_director_nationality').invalid && programForm.get('psd_director_nationality').touched">
-                        <small class="text-danger">psd_director_nationality is required.</small>
-                    </div>
-                </div>
-
             </div>
         </div>
-
+        
+        
 
 
 
@@ -162,7 +170,7 @@
 
                 <div>
                     <label for="sukk_face_value">Sukk Face Value:</label>
-                    <input id="sukk_face_value" formControlName="sukk_face_value" type="number" />
+                    <input id="sukk_face_value" formControlName="sukk_face_value" type="number" class="form-control custom-input" />
                     <div
                         *ngIf="programForm.get('sukk_face_value').invalid && programForm.get('sukk_face_value').touched">
                         <small class="text-danger">Sukk Face Value is required.</small>
@@ -294,7 +302,7 @@
             <div class="col-6">
                 <div>
                     <label for="Beneficiary_capital">Beneficiary Capital:</label>
-                    <input id="Beneficiary_capital" formControlName="Beneficiary_capital" type="number" />
+                    <input id="Beneficiary_capital" formControlName="Beneficiary_capital" type="number" class="form-control custom-input" />
                     <div
                         *ngIf="programForm.get('Beneficiary_capital').invalid && programForm.get('Beneficiary_capital').touched">
                         <small class="text-danger">Beneficiary Capital must be a positive number.</small>
@@ -382,7 +390,7 @@
             <div class="col-6">
                 <div>
                     <label for="Periodic_distrib_amount">Periodic Distribution Amount:</label>
-                    <input id="Periodic_distrib_amount" formControlName="Periodic_distrib_amount" type="number" />
+                    <input id="Periodic_distrib_amount" formControlName="Periodic_distrib_amount" type="number" class="form-control custom-input" />
                     <div
                         *ngIf="programForm.get('Periodic_distrib_amount').invalid && programForm.get('Periodic_distrib_amount').touched">
                         <small class="text-danger">Periodic Distribution Amount must be a positive number.</small>
@@ -480,7 +488,7 @@
             <div class="col-6">
                 <div>
                     <label for="Management_fee">Management Fee:</label>
-                    <input id="Management_fee" formControlName="Management_fee" type="number" />
+                    <input id="Management_fee" formControlName="Management_fee" type="number" class="form-control custom-input" />
                     <div *ngIf="programForm.get('Management_fee').invalid && programForm.get('Management_fee').touched">
                         <small class="text-danger">Management Fee must be a positive number.</small>
                     </div>
@@ -544,7 +552,7 @@
             <div class="col-6">
                 <div>
                     <label for="Approval_date">Approval Date:</label>
-                    <input id="Approval_date" formControlName="Approval_date" type="date" />
+                    <input id="Approval_date" formControlName="Approval_date" type="date" class="form-control custom-input" />
                     <div *ngIf="programForm.get('Approval_date').invalid && programForm.get('Approval_date').touched">
                         <small class="text-danger">Approval Date is required.</small>
                     </div>
@@ -583,7 +591,7 @@
             <div class="col-6">
                 <div>
                     <label for="Funding_amount">Funding Amount:</label>
-                    <input id="Funding_amount" formControlName="Funding_amount" type="number" />
+                    <input id="Funding_amount" formControlName="Funding_amount" type="number" class="form-control custom-input" />
                     <div *ngIf="programForm.get('Funding_amount').invalid && programForm.get('Funding_amount').touched">
                         <small class="text-danger">Funding Amount must be a positive number.</small>
                     </div>
@@ -592,7 +600,7 @@
             <div class="col-6">
                 <div>
                     <label for="contract_start_date">Contract Start Date:</label>
-                    <input id="contract_start_date" formControlName="contract_start_date" type="date" />
+                    <input id="contract_start_date" formControlName="contract_start_date" type="date" class="form-control custom-input" />
                     <div
                         *ngIf="programForm.get('contract_start_date').invalid && programForm.get('contract_start_date').touched">
                         <small class="text-danger">Contract Start Date is required.</small>
@@ -609,7 +617,7 @@
             <div class="col-6">
                 <div>
                     <label for="contract_end_date">Contract End Date:</label>
-                    <input id="contract_end_date" formControlName="contract_end_date" type="date" />
+                    <input id="contract_end_date" formControlName="contract_end_date" type="date" class="form-control custom-input" />
                     <div
                         *ngIf="programForm.get('contract_end_date').invalid && programForm.get('contract_end_date').touched">
                         <small class="text-danger">Contract End Date is required.</small>
@@ -620,7 +628,7 @@
 
                 <div>
                     <label for="program_tot_face_value">Program Total Face Value:</label>
-                    <input id="program_tot_face_value" formControlName="program_tot_face_value" type="number" />
+                    <input id="program_tot_face_value" formControlName="program_tot_face_value" type="number" class="form-control custom-input" />
                     <div
                         *ngIf="programForm.get('program_tot_face_value').invalid && programForm.get('program_tot_face_value').touched">
                         <small class="text-danger">Program Total Face Value must be a positive number.</small>
@@ -719,7 +727,7 @@
             <div class="col-6">
                 <div>
                     <label for="subs_mony_Retur">Subs Money Return:</label>
-                    <input id="subs_mony_Retur" formControlName="subs_mony_Retur" type="number" />
+                    <input id="subs_mony_Retur" formControlName="subs_mony_Retur" type="number" class="form-control custom-input" />
                     <div
                         *ngIf="programForm.get('subs_mony_Retur').invalid && programForm.get('subs_mony_Retur').touched">
                         <small class="text-danger">Subs Money Return must be a positive number.</small>

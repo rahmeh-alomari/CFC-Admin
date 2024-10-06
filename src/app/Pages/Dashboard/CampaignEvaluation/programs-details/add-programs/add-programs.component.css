@@ -52,7 +52,17 @@ textarea {
     border-radius: 4px; /* Rounded corners */
     font-size: 14px; /* Font size */
 }
-
+.border-pr{
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    margin: 40px 0px; /* Margin around the border */
+    padding: 20px; /* Padding inside the border */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+ 
+}
+.align-self-center h3,.border-pr h3{
+    color: rgb(60, 13, 124);
+}
 /* Input focus styles */
 input:focus,
 select:focus,

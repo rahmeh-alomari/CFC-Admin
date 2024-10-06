@@ -1,22 +1,32 @@
 
 <div class="col-12">
-  <div class="d-flex justify-content-end align-items-center">
-      <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="javascript:void(0)">{{LANG.Home}}</a></li>
-          <li class="breadcrumb-item active" (click)="goBack()" style="cursor: pointer">{{LANG.Campaign_List}}</li>
-          <li class="breadcrumb-item active" >{{LANG.Program_List}}</li>
-        
 
-      </ol>
-      <!-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15" (click)="addKYC()"><i
-          class="fa fa-plus-circle"></i> Create New</button> -->
-  </div>
+
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">{{LANG.Program_List}}</h3>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{LANG.Home}}</a></li>
+            <li class="breadcrumb-item active" (click)="goBack()" style="cursor: pointer">{{LANG.Campaign_List}}</li>
+            <li class="breadcrumb-item active" >{{LANG.Program_List}}</li>
+          
+  
+        </ol>
+            <!-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15" (click)="addKYC()"><i
+                class="fa fa-plus-circle"></i> Create New</button> -->
+        </div>
+    </div>
 </div>
-<div class=" mt-4">
-  <a [routerLink]="['/dashboard/add-programs']"
-    style="border-style: none; background-color: rgb(60, 13, 124); color: white; padding: 15px 25px; border-radius: 5px; cursor: pointer;">
-    ADD Program
-  </a>
+</div>
+<div class=" mt-4" style="height: 100vh;">
+  <a (click)="navigateToAddProgram()"
+  style="border-style: none; background-color: rgb(60, 13, 124); color: white; padding: 15px 25px; border-radius: 5px; cursor: pointer;">
+  ADD Program
+</a>
+
   <div *ngIf="program && program.length > 0; else noData">
 
     <div class="table-responsive">
@@ -77,7 +87,7 @@
         <tbody>
           <tr *ngFor="let item of paginatedRecords">
             <td>
-              <button class="btn btn-link" (click)="editProgram(item.id)">
+              <button class="btn btn-link"  (click)="editProgram(item.program.id)">
                 <i class="fas fa-edit" aria-hidden="true"></i>
               </button>
               <button class="btn btn-link text-danger" (click)="deleteProgram(item.id)">

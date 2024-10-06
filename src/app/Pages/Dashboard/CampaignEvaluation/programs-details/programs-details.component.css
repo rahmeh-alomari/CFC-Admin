@@ -24,7 +24,9 @@ h2 {
     vertical-align: middle;
     border: 1px solid #dee2e6;
 }
-
+.align-self-center h3{
+    color: rgb(60, 13, 124);
+}
 .table th ,.pagination-controls button {
     background-color: rgb(60, 13, 124);
     color: #ffffff;

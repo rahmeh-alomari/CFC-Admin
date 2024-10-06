@@ -15,10 +15,11 @@ export class KYCService {
     console.log("program",program)
   }
 
-  updateProgram(programData: any,id: number,): Observable<any> {
+  updateProgram(id: number,programData: any): Observable<any> {
    
     this.url = `update-program/${id}`;
     let query = "";
+
     return this.api.post(this.url, programData);
   }
 

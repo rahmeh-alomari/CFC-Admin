@@ -15,27 +15,35 @@ import { Location } from '@angular/common';  // Import Location service
 })
 export class ProgramsDetailsComponent implements OnInit {
   LANG = environment.english_translations;
-  program: any[] = []; 
+  program: any[] = [];
   tableHeaders: string[] = [];
   isDisabled: boolean = false; // Enable/disable pagination
   currentPage: number = 1;
   itemsPerPage: number = 10;
-  totalPages: number = 10;
+  totalPages: number = 0;
   paginatedRecords: any[] = [];
   programId: number;
 
-  constructor(private route: ActivatedRoute, private location: Location,private kycService: KYCService,private toast:ToastrManager, private modalService: NgbModal, private router: Router) {}
+  constructor(private route: ActivatedRoute, private location: Location, private kycService: KYCService, private toast: ToastrManager, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.programId = +params.get('id'); // Get the 'id' from the route parameter
       console.log('Program ID:', this.programId);
       console.log("this.paginatedRecordsthis.programIdthis.programId", this.programId);
-      this.fetchProgramData( this.programId); // Fetch program data and set pagination
+      this.fetchProgramData(this.programId); // Fetch program data and set pagination
 
     });
     this.currentPage = 1; // Ensure current page starts at 1
-  
+
+  }
+
+  navigateToAddProgram(): void {
+    this.router.navigate(['/dashboard/add-programs'], { queryParams: { id: this.programId } });
+  }
+  calculateTotalPages(): void {
+    this.totalPages = Math.ceil(this.program.length / this.itemsPerPage);
+    console.log("Total Pages:", this.totalPages);
   }
   goBack(): void {
     this.location.back();  // Navigate back to the previous page
@@ -73,34 +81,50 @@ export class ProgramsDetailsComponent implements OnInit {
       this.paginateRecords();
     }
   }
+  // fetchProgramData(id): void {
+  //   this.kycService.getPrograms().subscribe((response) => {
+  //     this.program = response.data;  // Assuming the response has a 'data' property
+  //     console.log("this.program",response);
+  //     this.calculateTotalPages();
+  //     this.paginateRecords();
 
+  //   });
+  // }
   fetchProgramData(id): void {
     this.kycService.getProgramById(id).subscribe((response) => {
-      this.program = response;  // Assuming the response has a 'data' property
-      console.log("this.program",response);
+      this.program = response.data;  // Assuming the response has a 'data' property
+      console.log("this.program", this.program);
 
-   
+      this.calculateTotalPages();
+      this.paginateRecords();
+
     });
   }
-  // Edit a program by opening a modal
   editProgram(id: number): void {
     console.log('Edit program with id:', id);
 
     const modalRef = this.modalService.open(UpdateDetailsComponent);
-    modalRef.componentInstance.programId = id;  // Pass the ID to the modal
+    modalRef.componentInstance.programId = this.programId;
+    modalRef.componentInstance.id = id;
 
-    modalRef.result.then((result) => {
-      console.log('Modal closed with result:', result);
-      if (result === 'updated') {
-        // Optionally, refetch data or update the program list based on the result
-        this.fetchProgramData( this.programId); // Refresh the data if changes were made
+    modalRef.result.then(
+      (result) => {
+        console.log(result);
+
+        if (result && result.message === 'Data update successfully') {
+          console.log('Program updated successfully, fetching updated data');
+          this.fetchProgramData(this.programId);
+          this.updatePagination();
+        }
+      },
+      (reason) => {
+        console.log('Modal dismissed with reason:', reason);
+        this.fetchProgramData(this.programId);
       }
-    }, (reason) => {
-      console.log('Modal dismissed with reason:', reason);
-    });
+    );
   }
 
-  // Delete a program with confirmation
+
   deleteProgram(id: number): void {
     const modalRef = this.modalService.open(ConfirmDeleteModalComponent);
 
@@ -109,12 +133,11 @@ export class ProgramsDetailsComponent implements OnInit {
         this.kycService.deleteProgram(id).subscribe({
           next: (response) => {
             console.log('Program deleted successfully:', response);
-            this.toast.successToastr(this.LANG.Evaluation_deleted_successfully);
+            this.toast.successToastr(this.LANG.Program_deleted_successfully);
 
-            // Remove the deleted program from the list and update pagination
-            this.fetchProgramData( this.programId);
+            this.fetchProgramData(this.programId);
 
-            this.updatePagination(); // Recalculate pagination after deletion
+            this.updatePagination(); 
           },
           error: (error) => {
             this.toast.warningToastr(error.message);
