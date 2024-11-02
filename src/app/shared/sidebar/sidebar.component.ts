@@ -16,6 +16,8 @@ declare var $: any;
 })
 export class SidebarComponent implements OnInit {
   showMenu = '';
+  permissions: string[] = [];
+  // showApprovalSection = false;
   showSubMenu = '';
   public sidebarnavItems: any[];
   LANG=environment.english_translations;
@@ -37,17 +39,23 @@ export class SidebarComponent implements OnInit {
     private toast:ToastrManager,
     private shared:SharedService
   ) {
-    const user_data=btoa(btoa("user_info"));
-
-    if(localStorage.getItem(user_data) != undefined){
-      this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
-      console.log("data",this.user_data)
-
-    }
+   
+  
   }
-
+  navigateToTransferB2B(itemId: number) {
+    this.router.navigate(['/dashboard/transfer-b2b', itemId]);
+  }
   // End open close
   ngOnInit() {
+    // this.route.data.subscribe((data) => {
+    //   this.permissions = data['permissions'] || [];
+
+    //   // Check if 'approval' exists in the permissions array
+    //   this.showApprovalSection = this.permissions.includes('approval');
+
+    //   console.log('Permissions:', this.permissions);
+    //   console.log('Show Approval Section:', this.showApprovalSection);
+    // });
     this.sidebarnavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
   }
 

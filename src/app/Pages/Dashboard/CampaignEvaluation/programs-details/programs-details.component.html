@@ -36,13 +36,11 @@
         <thead>
           <tr>
             <th>Actions</th>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Campaign ID</th>
             <th>Licensing</th>
             <th>Licensing Purpose</th>
-            <th>psd_director_name</th>
-            <th>psd_director_nationality</th>
-            <th>psd_director_relation</th>
+            <th>Directors</th>
             <th>SPV Trustee</th>
             <th>SPV</th>
             <th>Sukuk Products</th>
@@ -81,7 +79,7 @@
             <th>Risk Factors</th>
             <th>Created At</th>
             <th>Updated At</th>
-            <th>Director</th>
+           
           </tr>
         </thead>
         <tbody>
@@ -94,52 +92,92 @@
                 <i class="fas fa-trash" aria-hidden="true"></i>
               </button>
             </td>
-            <td>{{ item.id }}</td>
-            <td>{{ item.program?.campaign_id }}</td>
-            <td>{{ item.program?.Licensing }}</td>
-            <td>{{ item.program?.Licensing_Purpose }}</td>
-            <td>{{ item.psd_director_name }}</td>
-            <td>{{ item.psd_director_nationality }}</td>
-            <td>{{ item.psd_director_relation }}</td>
-            <td>{{ item.program?.SPV_trustee }}</td>
-            <td>{{ item.program?.spv }}</td>
-            <td>{{ item.program?.Sukuk_products }}</td>
-            <td>{{ item.program?.Issuer_Paying_Agent }}</td>
-            <td>{{ item.program?.Platform_Admin }}</td>
-            <td>{{ item.program?.sukuk }}</td>
-            <td>{{ item.program?.sukk_face_value }}</td>
-            <td>{{ item.program?.program_tot_face_value }}</td>
-            <td>{{ item.program?.offering_proceeds_use }}</td>
-            <td>{{ item.program?.conditions_inv_services }}</td>
-            <td>{{ item.program?.funding_purpose }}</td>
-            <td>{{ item.program?.sponsor }}</td>
-            <td>{{ item.program?.sponsor_Role_desc }}</td>
-            <td>{{ item.program?.Sponsor_commitment }}</td>
-            <td>{{ item.program?.sponsor_repres }}</td>
-            <td>{{ item.program?.Beneficiary }}</td>
-            <td>{{ item.program?.entity_beneficiary_Legal }}</td>
-            <td>{{ item.program?.Beneficiary_activities }}</td>
-            <td>{{ item.program?.Beneficiary_capital }}</td>
-            <td>{{ item.program?.company_owners }}</td>
-            <td>{{ item.program?.Subscription_method }}</td>
-            <td>{{ item.program?.min_max_subscription }}</td>
-            <td>{{ item.program?.Alloc_Offering_restricts }}</td>
-            <td>{{ item.program?.early_redemption }}</td>
-            <td>{{ item.program?.sukuk_extinguishing }}</td>
-            <td>{{ item.program?.Periodic_distrib_amount }}</td>
-            <td>{{ item.program?.role_custodian_Desc }}</td>
-            <td>{{ item.program?.Sukuk_Restrictions }}</td>
-            <td>{{ item.program?.Sukuk_assets }}</td>
-            <td>{{ item.program?.Murabaha_contract }}</td>
-            <td>{{ item.program?.property_Promissory_note }}</td>
-            <td>{{ item.program?.beneficiary_promissory_note }}</td>
-            <td>{{ item.program?.sukk_document }}</td>
-            <td>{{ item.program?.ruling_regime }}</td>
-            <td>{{ item.program?.subs_mony_Retur }}</td>
-            <td>{{ item.program?.Risk_factors }}</td>
+            <!-- <td>{{ item.id }}</td> -->
+            <td>{{ item.campagin_id }}</td>
+            <td>{{ item.Licensing }}</td>
+
+            <td colspan="3">
+              <div *ngIf="item.directors && item.directors.length > 0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#directorsCollapse' + item.id"
+                  aria-expanded="false" [attr.aria-controls]="'directorsCollapse' + item.id">
+                  View Directors
+                </button>
+                <div [id]="'directorsCollapse' + item.id" class="collapse">
+                  <div class="card card-body">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Nationality</th>
+                          <th>Relation</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let director of item.directors">
+                          <td>{{ director.psd_director_name }}</td>
+                          <td>{{ director.psd_director_nationality }}</td>
+                          <td>{{ director.psd_director_relation }}</td>
+                          <!-- <td>
+                            <button class="btn btn-link"  (click)="editDirector(director.id)">
+                              <i class="fas fa-edit" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-link text-danger" (click)="deleteDirector(director.id)">
+                              <i class="fas fa-trash" aria-hidden="true"></i>
+                            </button>
+                              <button class="btn btn-link text-danger" (click)="AddDirector(director.id)">
+                              <i class="fas fa-trash" aria-hidden="true"></i>
+                            </button>
+                          </td> -->
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="item.directors.length === 0">No Directors</div>
+            </td>
+            <td>{{ item.Licensing_Purpose }}</td>
+            
+            <td>{{ item.SPV_trustee }}</td>
+            <td>{{ item.spv }}</td>
+            <td>{{ item.Sukuk_products }}</td>
+            <td>{{ item.Issuer_Paying_Agent }}</td>
+            <td>{{ item.Platform_Admin }}</td>
+            <td>{{ item.sukuk }}</td>
+            <td>{{ item.sukk_face_value }}</td>
+            <td>{{ item.program_tot_face_value }}</td>
+            <td>{{ item.offering_proceeds_use }}</td>
+            <td>{{ item.conditions_inv_services }}</td>
+            <td>{{ item.funding_purpose }}</td>
+            <td>{{ item.sponsor }}</td>
+            <td>{{ item.sponsor_Role_desc }}</td>
+            <td>{{ item.Sponsor_commitment }}</td>
+            <td>{{ item.sponsor_repres }}</td>
+            <td>{{ item.Beneficiary }}</td>
+            <td>{{ item.entity_beneficiary_Legal }}</td>
+            <td>{{ item.Beneficiary_activities }}</td>
+            <td>{{ item.Beneficiary_capital }}</td>
+            <td>{{ item.company_owners }}</td>
+            <td>{{ item.Subscription_method }}</td>
+            <td>{{ item.min_max_subscription }}</td>
+            <td>{{ item.Alloc_Offering_restricts }}</td>
+            <td>{{ item.early_redemption }}</td>
+            <td>{{ item.sukuk_extinguishing }}</td>
+            <td>{{ item.Periodic_distrib_amount }}</td>
+            <td>{{ item.role_custodian_Desc }}</td>
+            <td>{{ item.Sukuk_Restrictions }}</td>
+            <td>{{ item.Sukuk_assets }}</td>
+            <td>{{ item.Murabaha_contract }}</td>
+            <td>{{ item.property_Promissory_note }}</td>
+            <td>{{ item.beneficiary_promissory_note }}</td>
+            <td>{{ item.sukk_document }}</td>
+            <td>{{ item.ruling_regime }}</td>
+            <td>{{ item.subs_mony_Retur }}</td>
+            <td>{{ item.Risk_factors }}</td>
             <td>{{ item.created_at | date:'short' }}</td>
             <td>{{ item.updated_at | date:'short' }}</td>
-            <td>{{ item.director }}</td>
+       
           </tr>
 
         </tbody>

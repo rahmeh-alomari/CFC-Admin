@@ -80,7 +80,7 @@
             </ul>
         </li>
 
-        <li class="sidebar-item" ء>
+        <li class="sidebar-item">
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample4">
                 <div class="d-flex align-center justify-content-between w-100">
                     <span class="hide-menu">{{LANG.Users_Management}}</span>
@@ -109,7 +109,11 @@
                         <span class="hide-menu">{{LANG.Tracking}}</span>
                     </a>
                 </li>
-
+                <li class="sidebar-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/director-list">
+                    <a class="sidebar-link waves-effect waves-dark">
+                        <span class="hide-menu">{{LANG.Program_Directors}}</span>
+                    </a>
+                </li>
             </ul>
         </li>
 
@@ -230,6 +234,7 @@
 
             </ul>
         </li>
+
         <li class="sidebar-item" >
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExample4444" role="button" aria-expanded="false" aria-controls="collapseExample4444">
                 <div class="d-flex align-center justify-content-between w-100">
@@ -267,10 +272,10 @@
 
             </ul>
         </li>
-        <li class="sidebar-item" >
+        <!-- <li class="sidebar-item" >
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExampleTRANSFER" role="button" aria-expanded="false" aria-controls="collapseExample44">
                 <div class="d-flex align-center justify-content-between w-100">
-                    <span class="hide-menu">Transfer</span>
+                    <span class="hide-menu">workflow</span>
                     <i class="fas fa-angle-right"></i>
                 </div>
             </a>
@@ -290,7 +295,43 @@
                     </a>
                 </li>
             </ul>
+        </li> -->
+
+        <!-- <li class="sidebar-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/Works-flow">
+            <a class="sidebar-link waves-effect waves-dark">
+                <span class="hide-menu">workflow</span>
+            </a>
+        </li> -->
+  <li class="sidebar-item" >
+            <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExampleTRANSFER" role="button" aria-expanded="false" aria-controls="collapseExample44">
+                <div class="d-flex align-center justify-content-between w-100">
+                    <span class="hide-menu">workflow</span>
+                    <i class="fas fa-angle-right"></i>
+                </div>
+            </a>
+            <ul class="collapse sub-menu" id="collapseExampleTRANSFER">
+                <li class="sidebar-item" routerLink="/dashboard/BetweenOurAccounts" (click)="navigateToTransferB2B(1)">
+                    <a class="sidebar-link waves-effect waves-dark" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample444">
+                        <div class="d-flex align-center justify-content-between w-100">
+                            <span class="hide-menu">Transfer Between Accounts</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="sidebar-item" routerLink="/dashboard/BetweenTwoAccounts" (click)="navigateToTransferB2B(2)">
+                    <a class="sidebar-link waves-effect waves-dark" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample444">
+                        <div class="d-flex align-center justify-content-between w-100">
+                            <span class="hide-menu">Between Two Accounts</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
         </li>
+        <li class="sidebar-item"   routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard/Approva-llevel">
+            <a class="sidebar-link waves-effect waves-dark">
+              <span class="hide-menu">Approval</span>
+            </a>
+          </li>
+          
         <!-- <li class="sidebar-item">
             <a class="sidebar-link waves-effect waves-dark d-block" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="d-flex align-center justify-content-between w-100">

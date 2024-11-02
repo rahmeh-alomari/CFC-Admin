@@ -56,6 +56,7 @@ export class AddAdminComponent implements OnInit {
         }
       }
     )
+    console.log("getUserDetailsgetUserDetails",this.getUserDetails())
   }
 
   ngOnInit() {
@@ -87,6 +88,7 @@ getUserType(type?:number){
   this.adminService.getUserTpe().subscribe((res:any)=>{
     if(res.status){
         this.user_type=res.response;
+        console.log("getUserTypegetUserType",this.user_type)
         if(type){
           this.getUserDetails();
         }

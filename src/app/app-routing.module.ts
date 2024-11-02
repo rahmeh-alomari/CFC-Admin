@@ -4,13 +4,15 @@ import { noLoggedIn } from './shared/Services/NoLoggedIn.guard';
  
 import { FullComponent } from './layouts/full/full.component';
 import { authGuard } from './shared/Services/authGuard';
+import { WorkflowResolverService } from './shared/Services/workflow-resolver.service';
 
 export const Approutes: Routes = [
   {  
     path: '',
     component: FullComponent,
+    resolve: { permissions: WorkflowResolverService },
     children: [
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full'  },
       // {
       //   path: 'starter',
       //   loadChildren: './starter/starter.module#StarterModule'

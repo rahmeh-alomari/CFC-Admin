@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransferB2CComponent } from './transferB2C.component';
+import { AddWorkflowComponent } from './add-workflow.component';
 
-describe('TransferB2CComponent', () => {
-  let component: TransferB2CComponent;
-  let fixture: ComponentFixture<TransferB2CComponent>;
+describe('AddWorkflowComponent', () => {
+  let component: AddWorkflowComponent;
+  let fixture: ComponentFixture<AddWorkflowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransferB2CComponent ]
+      declarations: [ AddWorkflowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TransferB2CComponent);
+    fixture = TestBed.createComponent(AddWorkflowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

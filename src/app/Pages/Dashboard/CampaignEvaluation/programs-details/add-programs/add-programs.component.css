@@ -63,6 +63,46 @@ textarea {
 .align-self-center h3,.border-pr h3{
     color: rgb(60, 13, 124);
 }
+
+.form-control.ng-invalid.ng-touched {
+    border-color: red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px; /* Optional for readability */
+  }
+  
+  /* Styling for the chips inside the button */
+.selected-chips {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .chip {
+    background-color: #fff;
+    color: #007bff;
+    border-radius: 25px;
+    padding: 2px 8px;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .chip .close-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    margin-left: 5px;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .dropdown-menu {
+    width: 100%;
+    position: absolute;
+  }
+  
 /* Input focus styles */
 input:focus,
 select:focus,

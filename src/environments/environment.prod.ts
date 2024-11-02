@@ -235,6 +235,7 @@ export const environment = {
     Info_Type:"Info Type",
     Users_Management:"Users Management",
     Admin_List:"Admin List",
+    Program_Directors:"Program_Directors",
     Opportunity_List:"Opportunity List",
     Notifications:"Notifications",
     Email_Notifications:"Email Notifications",

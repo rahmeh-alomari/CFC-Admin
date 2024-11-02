@@ -14,6 +14,8 @@ const ChildRoutes: Routes = [
       path: 'users-list',
       component:AdminListComponent 
     },
+
+
   ]
 
 @NgModule({
@@ -24,7 +26,9 @@ const ChildRoutes: Routes = [
     LoaderModule
   ],
   declarations:[
-    AdminListComponent
+    AdminListComponent,
+  
+
   ]
 })
 export class AdminListModule { }

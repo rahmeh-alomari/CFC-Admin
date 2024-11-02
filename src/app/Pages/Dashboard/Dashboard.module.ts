@@ -22,6 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
+
+
 const ChildRoutes: Routes = [
   {
     path: 'dashboard',
@@ -172,7 +174,10 @@ const ChildRoutes: Routes = [
         path: '',
         loadChildren: './user-management/AdminIpList/admin-ip-list.module#AdminIpListModule',
       },
-
+      {
+        path: '',
+        loadChildren: './user-management/AdminIpList/director-list.module#AdminIpListModule',
+      },
       {
         path: '',
         loadChildren: './user-management/AddAdminIp/add-admin-ip.module#AddAdminIpModule',
@@ -230,12 +235,15 @@ const ChildRoutes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule, 
+   
     NgbModule  
   ],
   declarations:[
       DashboardComponent,
       ConfirmDeleteModalComponent,
       UpdateDetailsComponent,
+
+  
      
       // ProgramsDetailsComponent,
   ]

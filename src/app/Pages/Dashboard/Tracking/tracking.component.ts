@@ -148,6 +148,7 @@ export class TrackingComponent implements OnInit {
   paginateRecords(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
+    console.log("this.paginatedRecords",this.paginatedRecords)
     this.paginatedRecords = this.filteredRecords.slice(startIndex, endIndex);
   }
 

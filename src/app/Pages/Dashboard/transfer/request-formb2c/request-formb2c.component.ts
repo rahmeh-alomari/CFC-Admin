@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ToastrManager } from 'ng6-toastr-notifications';
+import { KYCService } from 'src/app/shared/Services/kyc.service';
 import { UsersService } from 'src/app/shared/Services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-transfer-B2C',
-  templateUrl: './transferB2C.component.html',
-  styleUrls: ['./transferB2C.component.css']
+  selector: 'app-request-formb2c',
+  templateUrl: './request-formb2c.component.html',
+  styleUrls: ['./request-formb2c.component.css']
 })
-export class TransferB2CComponent implements OnInit {
-
+export class RequestFormb2cComponent implements OnInit {
   fromAccount: string = "";
   toAccount: any = null;
   loading: boolean = false;
@@ -19,6 +21,12 @@ export class TransferB2CComponent implements OnInit {
   amount: any = 0;
   userList: any[] = [];
   pickedAccountData: any;
+  public LANG=environment.english_translations;
+
+  @Input()itemId:any;
+  @Input()approvalLevelId:any;
+  userId: number;
+  requestNumber: number;
   pickedBank:any;
   banks = [
     { nameEn: 'SAUDI HOLLANDI BANK', nameAr: 'البنك الأول', bic: 'AAALSARI' },
@@ -45,7 +53,7 @@ export class TransferB2CComponent implements OnInit {
     { nameEn: 'D360 Bank', nameAr: 'دال ثلاثمائة و ستون', bic: 'DBAKSARI' },
     { nameEn: 'Standard Chartered Bank', nameAr: 'بنك ستاندرد تشارترد', bic: 'SCBLSAR2' }
   ];
-  constructor(private http: HttpClient, private usersService: UsersService) { }
+  constructor(private http: HttpClient, private usersService: UsersService,private kycService: KYCService,private toast: ToastrManager) { }
   validateKey(event: KeyboardEvent) {
     const target = event.target as HTMLInputElement;
     if (target) {
@@ -67,6 +75,21 @@ export class TransferB2CComponent implements OnInit {
       }
       console.log("this.userList",this.userList);
     })
+    console.log("itemId has changed to:", this.itemId);
+
+    const storedUserId = localStorage.getItem('user-id');
+
+
+    if (storedUserId) {
+      this.userId = +storedUserId;
+      console.error('User ID not found in localStorage');
+
+    } else {
+      console.error('User ID not found in localStorage');
+      return;
+    }
+    this.addWorkflowInstance()
+
   }
   pickedUser() {
     console.log("this.toAccount",this.toAccount);
@@ -104,4 +127,44 @@ export class TransferB2CComponent implements OnInit {
         }
       );
   }
+  addWorkflowInstance() {
+    const status = 'pending';
+    this.requestNumber = Date.now();
+
+    const requestPayload = {
+      fromAccount: this.fromAccount,
+      toAccount: this.toAccount,
+      amount: this.amount
+    };
+    console.log('Workflow instance added successfully:', requestPayload);
+
+    // Call the service method and pass all the parameters
+    this.kycService.addWorkflowInstance(
+      this.itemId, // work_flow_id
+      this.userId, // user_id
+      this.requestNumber, // request_number
+      'initi', // approval_level_id
+      status, // status
+      requestPayload // request JSON object
+    ).subscribe(
+      (response) => {
+        console.log('Workflow instance added successfully:', response);
+        // Update requestData with the new response item
+
+        this.kycService.notifyWorkflowDataUpdated();
+      this.fromAccount = null;
+
+      
+        this.toAccount = null;
+        this.amount = null;
+        this.toast.successToastr(this.LANG.updated_successfully);
+
+      },
+      (error) => {
+        console.error('Error adding workflow instance:', error);
+        this.toast.errorToastr(this.LANG.Something_went_wrong_Please_try_again_later);
+      }
+    );
+  }
+  
 }

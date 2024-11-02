@@ -21,6 +21,7 @@ export class LoginService{
 
     userLogin(data:Object){
         this.url = "login";
+        
 		return this.api.post(this.url, data);
     }
 

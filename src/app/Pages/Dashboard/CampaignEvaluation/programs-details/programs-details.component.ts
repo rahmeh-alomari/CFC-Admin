@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { KYCService } from 'src/app/shared/Services/kyc.service';
@@ -23,6 +23,8 @@ export class ProgramsDetailsComponent implements OnInit {
   totalPages: number = 0;
   paginatedRecords: any[] = [];
   programId: number;
+  directorToDeleteId!: number; // Store the ID of the director to delete
+  // @ViewChild(RemoveDirectorsComponent, { static: false }) confirmDeleteModal!: RemoveDirectorsComponent;
 
   constructor(private route: ActivatedRoute, private location: Location, private kycService: KYCService, private toast: ToastrManager, private modalService: NgbModal, private router: Router) { }
 
@@ -51,7 +53,13 @@ export class ProgramsDetailsComponent implements OnInit {
   toggleDisabled() {
     this.isDisabled = !this.isDisabled;
   }
+ 
 
+  confirmDelete() {
+    // Implement your deletion logic here
+    console.log(`Director with ID ${this.directorToDeleteId} deleted.`);
+    // Call your service to delete the director here
+  }
   // Update pagination details when the data or page changes
   updatePagination(): void {
     this.totalPages = Math.ceil(this.program.length / this.itemsPerPage); // Calculate total pages
@@ -92,8 +100,8 @@ export class ProgramsDetailsComponent implements OnInit {
   // }
   fetchProgramData(id): void {
     this.kycService.getProgramById(id).subscribe((response) => {
-      this.program = response.data;  // Assuming the response has a 'data' property
-      console.log("this.program", this.program);
+      this.program = response.response.response
+            console.log("this.program",response);
 
       this.calculateTotalPages();
       this.paginateRecords();
